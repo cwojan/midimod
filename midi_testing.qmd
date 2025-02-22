@@ -1,0 +1,47 @@
+---
+title: "MIDI testing"
+format: html
+---
+
+This document features code where I am learning the ropes of using Python to receive and interpret MIDI signals.
+
+This cell prints names of MIDI inputs connected (from ChatGPT)
+```{python}
+import mido
+
+print(mido.get_input_names())
+
+```
+
+This cell monitors midi signals from those inputs (from ChatGPT)
+
+```{python}
+with mido.open_input('USB Midi  USB Midi') as inport:
+    for msg in inport:
+        print(msg)
+
+
+```
+
+Editing the above cell to only display 'note on' messages (used copilot, gave me the code I expected)
+
+(switched to monitoring note velocity instead)
+
+```{python}
+with mido.open_input('USB Midi  USB Midi') as inport:
+    for msg in inport:
+        if msg.velocity > 0:
+            print(msg)
+        
+```
+
+trying os module
+
+```{python}
+import os
+import time
+
+print(os.getcwd())
+time.sleep(2)
+os.system('clear')
+```
